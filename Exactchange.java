@@ -1,41 +1,31 @@
-import java.util.Scanner;
+import java.util.Scanner; 
 
-public class HighwayProgram {
-    public static void main(String[] args) {
+public class Exactchange {
+   public static void main(String[] args) {
+         // Get input from the user
         Scanner scanner = new Scanner(System.in);
-        int highwayNumber;
-        int primaryNumber;
+       
+        int changeInPennies = scanner.nextInt();
 
-        System.out.print("Enter a highway number: ");
-        highwayNumber = scanner.nextInt();
-        primaryNumber = highwayNumber % 100;
-
-        // Check if thehighway number is within the valid range (1-99)
-        if (highwayNumber >= 1 && highwayNumber <= 99) {
-            // Check if the highway number is odd or even to determine the direction
-            if (highwayNumber % 2 == 1) {
-                System.out.println("I-" + highwayNumber + " is primary, going north/south.");
-            } else {
-                System.out.println("I-" + highwayNumber + " is primary, going east/west.");
-            }
-        }
-        // Check if the highway number is within the valid range (100-999)
-        else if (highwayNumber >= 100 && highwayNumber <= 999) {
-            // Check if the primary number is not zero
-            if (primaryNumber != 0) {
-                // Check if the primary number is odd or even to determine the direction
-                if (primaryNumber % 2 == 1) {
-                    System.out.println("I-" + highwayNumber + " is auxiliary, serving I-" + primaryNumber + ", going north/south.");
-                } else {
-                    System.out.println("I-" + highwayNumber + " is auxiliary, serving I-" + primaryNumber + ", going east/west.");
+        // Calculate and print the change
+        if (changeInPennies == 0) {
+            System.out.println("No change");
+        } else {
+           //Array to store the coinvalues index 0 - 4 , corresponding to the CoinNmaes 
+            int[] coinValues = { 100, 25, 10, 5, 1 };
+            String[] coinNames = { "Dollar", "Quarter", "Dime", "Nickel", "Penny" };
+        
+            for (int i = 0; i < coinValues.length; i++) {
+                int numCoins = changeInPennies / coinValues[i];
+                if (numCoins > 0) {
+                    if (numCoins > 1) {
+                       // plural incase its more than one.
+                        coinNames[i] += "s";
+                    }
+                    System.out.println(numCoins + " " + coinNames[i]);
+                    changeInPennies %= coinValues[i];
                 }
-            } else {
-                System.out.println(highwayNumber + " is not a valid interstate highway number.");
             }
         }
-        // Handle invalid highway numbers
-        else {
-            System.out.println(highwayNumber + " is not a valid interstate highway number.");
-        }
-    }
+   }
 }
