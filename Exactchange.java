@@ -10,7 +10,7 @@ public class HighwayProgram {
         highwayNumber = scanner.nextInt();
         primaryNumber = highwayNumber % 100;
 
-        // Check if the highway number is within the valid range (1-99)
+        // Check if thehighway number is within the valid range (1-99)
         if (highwayNumber >= 1 && highwayNumber <= 99) {
             // Check if the highway number is odd or even to determine the direction
             if (highwayNumber % 2 == 1) {
